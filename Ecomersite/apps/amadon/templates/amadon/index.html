@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amadon.com</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Amadon Store!</h1>
+    <table style="width:100%">
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>${{ item.price }}</td>
+            <td>
+                    <form action='/process' method='post'>
+                        {% csrf_token %}
+                        <select name='qty'>
+                           <option>1</option>
+                           <option>2</option>
+                           <option>3</option>
+                           <option>4</option>
+                           <option>5</option>
+                        </select>
+                        <input type='hidden' name='itemid' value='{{ item.id }}' />
+                        <button type='submit'>Buy!</button>
+                      </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+
+        <tr>
+                <td><img src="https://cdn1.imggmi.com/uploads/2019/2/19/53de73c34f2d713aca9f00dd4f289eb0-full.jpg"></td>
+                <td>$999.99</td>
+                <td>
+                        <form action='/process' method='post'>
+                            {% csrf_token %}
+                            <select name='qty'>
+                               <option>1</option>
+                               <option>2</option>
+                               <option>3</option>
+                               <option>4</option>
+                               <option>5</option>
+                            </select>
+                            <input type='hidden' name='itemid' value='3' />
+                            <button type='submit'>Buy Meeeeee!</button>
+                          </form>
+                </td>
+            </tr>
+    </table>
+</body>
+
+</html>

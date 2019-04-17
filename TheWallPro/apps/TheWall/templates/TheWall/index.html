@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'TheWall/id.css' %}">
+
+</head>
+
+<body>
+    <div style="width: 100%">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div>
+        <h1>Registration</h1>
+        <form action="/register" method="POST">
+            {% csrf_token %}
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="firstname"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="lastname"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="reg-email"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="reg-pw"></td>
+            </tr>
+            <tr>
+                <td>Confirm PW</td>
+                <td><input type="password" name="reg-cpw"></td>
+            </tr>
+        </table>
+        <input class="bt" type="submit" value="Register">
+    </form>
+    </div>
+
+    <div>
+            <h1>Login</h1>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" name="log-email"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="log-pw"></td>
+                </tr>
+            </table>
+            <input class="bt" type="submit" value="Login">
+        </form>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add a new Show</title>
+    <style>
+        li{
+            color: rgb(250, 8, 8);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/shows">GO BACK</a>
+    <h1>Add a new Show</h1>
+    <div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        <form action="/addshowBt" method="POST">
+            {% csrf_token %}
+            Title:<br>
+            <input type="text" name="title_input"><br>
+            Network:<br>
+            <input type="text" name="network_input"><br>
+            Release Date:<br>
+            <input type="date" name="date_input"><br>
+            Description:<br>
+            <textarea name="des_input"></textarea><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+
+</html>

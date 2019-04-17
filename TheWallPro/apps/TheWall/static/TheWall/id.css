@@ -1,0 +1,19 @@
+body{
+    width: 920px;
+    margin: 0px auto;
+    background-image: url("img/bg.jpg");
+    background-size: cover;
+    
+}
+div{
+    width: 450px;
+    display: inline-block;
+    margin: 0px auto;
+    vertical-align: top;
+}
+div .bt{
+    margin: 20px 106px;
+}
+.messages{
+    color: rgb(253, 5, 5);
+}

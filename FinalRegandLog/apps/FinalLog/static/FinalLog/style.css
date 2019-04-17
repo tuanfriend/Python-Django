@@ -1,0 +1,80 @@
+body{
+    width: 970px;
+    margin: 0px auto;
+    /* outline: 1px solid black; */
+    background-color: #cdcdcd;
+    font-family: 'Tangerine', serif;
+    background: url('img/dashboardbg.png');
+}
+#listquote{
+    vertical-align: top;
+    width: 450px;
+    display: inline-block;
+    border: 1px solid red;
+}
+#eachquote{
+    border: 1px solid black;
+}
+#addquote{
+    width: 450px;
+    display: inline-block;
+    border: 1px solid rgb(10, 230, 58);
+}
+#toplink{
+
+    display: inline;
+    margin-left: 526px;
+    text-shadow: 4px 4px 4px #aaa;
+    font-size: 1.5em;
+    color: #333;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.colum{
+    width: 481px;
+    vertical-align: top;
+    display: inline-block;
+    
+}
+
+.quote {
+    font-family: 'Cardo', serif;
+    font-size: 1.5em;
+    width: 97%;
+    height: auto;
+    margin: 0 auto;
+    background-color: #efefef;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.9);;
+    border-radius: 20px;
+    color: #000;
+    box-shadow: -10px 10px 20px rgba(100,100,100,.8);;
+  }
+
+  .likebt {
+    font-style: italic;
+    font-size: 0.8em;
+  }
+
+h2{
+    margin: 10px 20px;
+    margin-top: 20px;
+    text-shadow: 4px 4px 4px #aaa;
+    font-size: 1.5em;
+    color: #333;
+}
+
+h3{
+    margin: 0px auto;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#rightside{
+    margin: 0px auto;
+    text-align: center;
+    font-size: xx-large;
+}
+
+textarea{
+    width: 209px;
+}

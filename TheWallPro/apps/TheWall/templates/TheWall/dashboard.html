@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Great Wall</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="{% static 'TheWall/style.css' %}"> 
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+<div id="head">
+        <h2><a id="logo" href="/dashboard">The Great Wall</a></h2>
+        <b>Welcome, <a href="/edit">{{ user.fname }} {{ user.lname }}</a></b>
+        <a href="/logout">Logout</a>
+        <hr>
+</div>
+
+<div id="main">
+    <div class="status-upload">
+    <!-- <h3>What are you doing right now?</h3> -->
+    <form action="/postmess" method="POST">
+        {% csrf_token %}
+    <textarea id="post-mess" name="post-mess" placeholder="What are you doing right now?"></textarea><br>
+    <input type="hidden" name="userpost" value="{{user.id}}">
+    <br><input class="float-right btn text-white btn-danger" id="input-ms" type="submit" value="Post a message">
+</form>
+</div>
+
+<!-- Print message -->
+{% for mess in allmess %}
+<b><a href="/post/{{mess.user.id}}"> {{ mess.user.fname }} {{ mess.user.lname }} </a></b> - {{ mess.created_at }}
+<p id="text-mess">{{ mess.message }}</p>
+<!-- end print message -->
+
+<!-- Button like,delete,share -->
+<div id="ssicon">
+        <div class="col-md-4">
+          <span class="inline"><a href="/postlike/{{mess.id}}"><i class="fa fa-thumbs-up up"></i></a>{{mess.like.count}}</span>
+          <span class="inline"><i class="fa fa-thumbs-down down"></i>3</span>
+                {% if mess.user.id == user.id %}
+                    <a href="/deletemess/{{mess.id}}">Delete</a>
+                {% endif %}
+        </div>
+    </div>
+
+
+<div id="cmbox">
+    {% for cm in mess.cmmess.all %}
+<b><a href="/post/{{cm.user.id}}"> {{ cm.user.fname }} {{ cm.user.lname }}</a> -- {{ cm.message.created_at }}</b>
+
+<p> {{cm.comment}}</p>
+
+{% endfor %}
+
+<form action="/postcomment" method="POST">
+    {% csrf_token %}
+<textarea id="post-cm" name="post-cm"></textarea><br>
+<input type="hidden" name="userpost" value="{{user.id}}">
+<input type="hidden" name="hidepost" value="{{mess.id}}">
+<br><input class="float-right btn btn-success green" id="input-cm" type="submit" value="Post a comment">
+</form>
+<br>
+</div>
+{% endfor %}
+</div>
+
+<center><a>Copyright 2019</a></center>
+</body>
+</html>

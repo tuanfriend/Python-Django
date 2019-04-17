@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Cardo:400,400italic|Radley|Tangerine" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'FinalLog/style.css' %}">
+</head>
+<body>
+        
+    <div id="header"><h2>Welcome, {{ user.fname }} {{ user.lname }}</h2>
+    <div id="toplink"><a href="/dashboard">Homepage</a> | <a href="/editacc">Edit My Account</a> | <a href="/logout">Logout</a></div>
+    </div>
+    <hr>
+    <div class="colum">
+        <h3>Quotes</h3>
+        {% for each in allquote %}
+        <div id="eachquote" class="quote">
+            <p><b>{{ each.auth }}</b>: {{ each.quote }}</p>
+            Posted by: <a href="/user/{{each.user.id}}">{{ each.user.fname }} {{ each.user.lname }}</a>
+           <div class="likebt">
+            <p>{{each.like.count}} people like this  <a href="/postlike/{{each.id}}"><button>Like</button></a></p>
+            {% if each.user.id == user.id %}
+                    <a href="/delete/{{each.id}}">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+
+    <div class="colum">
+        <h3>Add a Quote!</h3>
+        <div id="rightside">
+        <div style="width: 100%">
+                {% if messages %}
+                    {% for message in messages %}
+                    <a>{{ message }}</a><br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        <form action="/addquote" method="POST">
+            {% csrf_token %}
+            Author:<br>
+            <input type="text" name="auth-form"><br>
+            Quote:<br>
+            <textarea name="quo-form"></textarea><br><br>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Semi-Restful TV Shows</title>
+    <style>
+        table, th, td {
+            border: 1px solid rgb(53, 83, 5);
+            border-collapse: collapse;
+        }
+        body{
+            width: 970px;
+            margin:0px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>All Shows</h1>
+    <div>
+        <table style="width:100%">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Nextwork</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+            </tr>
+            {% for show in all_shows %}
+            <tr>
+                <td>{{show.id}}</td>
+                <td>{{show.title}}</td>
+                <td>{{show.network}}</td>
+                <td>{{show.releasedate}}</td>
+                <td>
+                    <a href="/shows/{{show.id}}">Show</a> |
+                    <a href="/shows/{{show.id}}/edit">Edit</a> |
+                    <a href="/shows/{{show.id}}/delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <a href="/addshow">Add a new show</a>
+</body>
+
+</html>
